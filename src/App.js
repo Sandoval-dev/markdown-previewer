@@ -43,8 +43,6 @@ function greet() {
 
 
   render() {
-    var variableOne = "Lorem Ipsum"
-    var variableTwo = "Lorem Ipsum"
 
     marked.setOptions({
       breaks: true, // Satır başlarına saygı gösterir
