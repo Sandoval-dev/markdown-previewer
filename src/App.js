@@ -3,7 +3,6 @@ import Badge from "react-bootstrap/Badge";
 import { marked } from "marked"
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,14 +29,14 @@ function greet() {
 
 ![Image Alt Text](https://via.placeholder.com/150)
 
-**This is bolded text**`
+**This is bolded text**
+`,
     }
   }
 
   updateMarkdown(markdown) {
-    this.setState({ markdown });
+    this.setState({ markdown })
   }
-
 
 
   render() {
@@ -45,6 +44,7 @@ function greet() {
       breaks: true,
       gfm: true
     });
+
 
     var inputStyle = {
       width: "400px",
@@ -57,6 +57,7 @@ function greet() {
 
     var outputStyle = {
       width: "400px",
+      minHeight: "50vh",
       height: "auto",
       backgroundColor: "#DCDCDC",
       marginLeft: "auto",
@@ -66,25 +67,24 @@ function greet() {
     }
 
     return (
-      <div className="row mt-4" >
+      <div className="row mt-4">
         <div className="container text-center">
           <h1><Badge bg="dark">Markdown Previewer</Badge></h1>
           <div className="row mt-4">
             <div className="col-md-6">
-              <Badge bg="secondary">Markdown Input</Badge>
-              <div className="markdown-input">
-                <textarea onChange={(e) => this.updateMarkdown(e.target.value)} style={inputStyle} id="editor" value={this.state.markdown} >
-                  {console.log(this.state.markdown)}
-                </textarea>
+              <Badge bg="secondary">Markdown Previewer</Badge>
+              <div className="markdown-input mt-4">
+                <textarea onChange={(e) => this.updateMarkdown(e.target.value)} value={this.state.markdown} id="editor" style={inputStyle}></textarea>
               </div>
             </div>
             <div className="col-md-6">
               <Badge bg="secondary">Previewer</Badge>
-              <div dangerouslySetInnerHTML={{ __html: marked(this.state.markdown) }} style={outputStyle} id="preview"></div>
+              <div id="preview" dangerouslySetInnerHTML={{ __html: marked(this.state.markdown) }} style={outputStyle}></div>
             </div>
           </div>
         </div>
       </div>
+
     );
   }
 }
