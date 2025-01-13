@@ -30,11 +30,9 @@ function greet() {
 
 ![Image Alt Text](https://via.placeholder.com/150)
 
-**This is bolded text**
-`,
-    };
+**This is bolded text**`
+    }
   }
-
 
   updateMarkdown(markdown) {
     this.setState({ markdown });
@@ -43,24 +41,23 @@ function greet() {
 
 
   render() {
-
     marked.setOptions({
-      breaks: true, // Satır başlarına saygı gösterir
-      gfm: true,    // GitHub Flavored Markdown desteği
+      breaks: true,
+      gfm: true
     });
-
 
     var inputStyle = {
       width: "400px",
       height: "50vh",
       marginLeft: "auto",
       marginRight: "auto",
-      padding: "10px"
+      padding: "10px",
+      marginTop: "5px"
     }
 
     var outputStyle = {
       width: "400px",
-      height: "50vh",
+      height: "auto",
       backgroundColor: "#DCDCDC",
       marginLeft: "auto",
       marginRight: "auto",
@@ -69,26 +66,21 @@ function greet() {
     }
 
     return (
-      <div className="row mt-4">
+      <div className="row mt-4" >
         <div className="container text-center">
-          <h1>
-            <Badge className="text-align-center" bg="dark">
-              Markdown Previewer
-            </Badge>
-          </h1>
+          <h1><Badge bg="dark">Markdown Previewer</Badge></h1>
           <div className="row mt-4">
             <div className="col-md-6">
               <Badge bg="secondary">Markdown Input</Badge>
-              <div className="markdown-input" style={inputStyle}>
-                <textarea onChange={(e) => { this.updateMarkdown(e.target.value) }} value={this.state.markdown} style={inputStyle} id="editor">
-
+              <div className="markdown-input">
+                <textarea onChange={(e) => this.updateMarkdown(e.target.value)} style={inputStyle} id="editor" value={this.state.markdown} >
+                  {console.log(this.state.markdown)}
                 </textarea>
               </div>
             </div>
             <div className="col-md-6">
-              <Badge bg="secondary">Preview</Badge>
-              <div className="preview" id="preview" dangerouslySetInnerHTML={{ __html: marked(this.state.markdown) }} style={outputStyle}>
-              </div>
+              <Badge bg="secondary">Previewer</Badge>
+              <div dangerouslySetInnerHTML={{ __html: marked(this.state.markdown) }} style={outputStyle} id="preview"></div>
             </div>
           </div>
         </div>
